@@ -1,0 +1,28 @@
+No arquivo "dados.properties" estão algumas configurações.
+
+driver = É o driver do banco de ira usar exemplo para postgresql "org.postgresql.Driver"
+
+caminho = É o caminho do banco de dados exemplos
+caminho ex postgresql = jdbc:postgresql://192.168.0.10:5432/seubanco
+caminho ex sql = jdbc:sqlserver://192.168.0.100;databaseName=DB_10070_00
+
+sql = Querya que irá trazer o resultado e aceita somente "select"
+tempo_refresh = tempo em segundos que o programa irá realizar o refresh
+audio = Esse variavel tem que estar como o nome e extensão exato do audio que se encontra na pasta "audios"
+
+status
+;0=Orçamento
+;1=
+;2=Crédito
+;3=Impressao
+;4=Separacao
+;5=Conferencia
+;6=Faturamento
+
+Lista de prioridades disponiveis
+;1=Balcao
+;2=Oficina
+;3=Retira
+;4=Entrega
+;8=Outros
+;9=Tranferencias
