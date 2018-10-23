@@ -23,8 +23,8 @@ public class ConexaoDB {
             file = new FileInputStream("./dados.properties");
             props.load(file);
             driver = props.getProperty("driver");
-            usuario = "flexsmart";
-            senha = "Dba@51195pcap";
+            usuario = "********";
+            senha = "*******";
             caminho = props.getProperty("caminho");
         } catch (IOException ex) {
             Logger.getLogger(ConexaoDB.class.getName()).log(Level.SEVERE, null, ex);
