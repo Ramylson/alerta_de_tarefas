@@ -1,2 +1,4 @@
 /Alerta_de_Tarefas/nbproject/private/
 /Alerta_de_Tarefas/build/
+*.java
+*.properties

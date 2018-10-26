@@ -23,8 +23,13 @@ public class ConexaoDB {
             file = new FileInputStream("./dados.properties");
             props.load(file);
             driver = props.getProperty("driver");
+<<<<<<< HEAD:src/controle/ConexaoDB.java
             usuario = "usuario";
             senha = "senha";
+=======
+            usuario = "********";
+            senha = "*******";
+>>>>>>> 51d0d4d881f0fc7925c5d10dc5c0cd728eb2a17e:Alerta_de_Tarefas/src/controle/ConexaoDB.java
             caminho = props.getProperty("caminho");
         } catch (IOException ex) {
             Logger.getLogger(ConexaoDB.class.getName()).log(Level.SEVERE, null, ex);
