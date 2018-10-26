@@ -1,13 +1,13 @@
 package visao;
 
 //Tela de aviso simples vermelha para aparecer no canto    
-
 public final class TelaAvisoSimples extends javax.swing.JFrame {
 
     public TelaAvisoSimples() {
         initComponents();
     }
     int retorno = 5;
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     public void initComponents() {
@@ -21,7 +21,7 @@ public final class TelaAvisoSimples extends javax.swing.JFrame {
         //setResizable(false);
         jLabelFraseAvisoSimples.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabelFraseAvisoSimples.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelFraseAvisoSimples.setText("Tarefas Pendentes "+(retorno));
+        jLabelFraseAvisoSimples.setText("Tarefas Pendentes " + (retorno));
         getContentPane().add(jLabelFraseAvisoSimples, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
         jButtonOKAvisoSimples.setText("OK");
@@ -46,7 +46,7 @@ public final class TelaAvisoSimples extends javax.swing.JFrame {
 
     public void setRetorno(int retorno) {
         this.retorno = retorno;
-        jLabelFraseAvisoSimples.setText("Tarefas Pendentes ("+retorno+")");
+        jLabelFraseAvisoSimples.setText("Tarefas Pendentes (" + retorno + ")");
     }
 
     private void jButtonOKAvisoSimplesActionPerformed(java.awt.event.ActionEvent evt) {

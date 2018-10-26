@@ -1,0 +1,1 @@
+Caso o mp3 vai ter um stop no refresh do programa, exemplo, caso o mp3 tenho 9 segundo e o refresh esteja ocorrendo a casa 10 segundo o audio irá tocar completo.

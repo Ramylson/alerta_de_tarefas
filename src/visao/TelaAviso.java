@@ -21,6 +21,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
@@ -29,6 +30,7 @@ import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javazoom.jl.decoder.JavaLayerException;
 
 /*@author Ramylson A. Costa*/
 public class TelaAviso extends javax.swing.JFrame {
@@ -38,6 +40,7 @@ public class TelaAviso extends javax.swing.JFrame {
     TelaAvisoSimples vermelho = new TelaAvisoSimples();
     CheckboxMenuItem cheque1 = new CheckboxMenuItem("Alarme Sonoro");
     CheckboxMenuItem cheque2 = new CheckboxMenuItem("Ativar Notificação");
+    Jlayer play = new Jlayer();
     Properties props = new Properties();
     FileInputStream file;
     FileOutputStream arquivoOut = null;
@@ -51,8 +54,12 @@ public class TelaAviso extends javax.swing.JFrame {
     TrayIcon trayIcon;
 
     public TelaAviso() throws FileNotFoundException, IOException {
-        File filemp3 = new File("C:\\PerimSis\\AvisoPedidos\\audios");
-        File[] arquivos = filemp3.listFiles();
+        File filemp3 = new File("C:\\PerimSistemas\\AlertaTarefas\\audios");
+        if (!filemp3.exists()){
+            JOptionPane.showMessageDialog(null, "Não encontrado diretório 'audios'!");
+            System.exit(0);
+        }
+        File[] arquivos = filemp3.listFiles((dir, name) -> name.toLowerCase().endsWith(".mp3"));
         ArrayList lista = new ArrayList();
         for (File fileTmp : arquivos) {
             lista.add(fileTmp.getName());
@@ -70,7 +77,6 @@ public class TelaAviso extends javax.swing.JFrame {
             tempo_refresh = Integer.parseInt(props.getProperty("tempo_refresh"));
         } catch (NumberFormatException errTempo) {
             JOptionPane.showMessageDialog(null, "'tempo_refresh' inválido!");
-            conecta.desconecta();
             System.exit(0);
         }
         tray();
@@ -86,6 +92,7 @@ public class TelaAviso extends javax.swing.JFrame {
         testepedido();
     }
 //Testar pedidos no servidor
+
     private void testepedido() {
         sql = props.getProperty("sql");
         String[] s = sql.trim().split(" ");
@@ -111,8 +118,7 @@ public class TelaAviso extends javax.swing.JFrame {
                                 display();
                             }
                             if (cheque1.getState() == true) {
-                                Jlayer l = new Jlayer();
-                                Jlayer.main(null);
+                                play.play();
                             }
                         } else {
                             jLabelAviso.setText("Não há tarefas!");
@@ -121,6 +127,8 @@ public class TelaAviso extends javax.swing.JFrame {
                         }
                     } catch (SQLException ex) {
                         JOptionPane.showMessageDialog(null, "Erro na Pesquisa:\n" + ex.getMessage());
+                    } catch (JavaLayerException | IOException | URISyntaxException ex) {
+                        Logger.getLogger(TelaAviso.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             };
@@ -129,6 +137,7 @@ public class TelaAviso extends javax.swing.JFrame {
         }
     }
 //Construção dos componentes da Tela de aviso principal
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -228,6 +237,7 @@ public class TelaAviso extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jComboBoxAudiosActionPerformed
 //TrayCat quando minimizar
+
     public final void tray() {
         // o sistema suporta o trayicon?
         if (SystemTray.isSupported()) {
@@ -262,7 +272,7 @@ public class TelaAviso extends javax.swing.JFrame {
             popup.add(janelatray);
             popup.addSeparator();//adiconando um separador
             popup.add(cheque1); //Criando objetos do tipo Checkbox
-            popup.add(cheque2);
+            //popup.add(cheque2);
             popup.addSeparator();
             popup.add(versaotray);
             popup.add(sairtray);

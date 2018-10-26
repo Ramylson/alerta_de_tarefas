@@ -6,7 +6,7 @@ caminho = É o caminho do banco de dados exemplos
 caminho ex postgresql = jdbc:postgresql://192.168.0.10:5432/seubanco
 caminho ex sql = jdbc:sqlserver://192.168.0.100;databaseName=DB_10070_00
 
-sql = Querya que irá trazer o resultado e aceita somente "select"
+sql = Query que irá trazer o resultado e aceita somente "select"
 tempo_refresh = tempo em segundos que o programa irá realizar o refresh
 audio = Esse variavel tem que estar como o nome e extensão exato do audio que se encontra na pasta "audios"
 
