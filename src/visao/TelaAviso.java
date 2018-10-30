@@ -114,6 +114,7 @@ public class TelaAviso extends javax.swing.JFrame {
                             jLabelAviso.setText("Tarefas pendentes (" + retornoquery + ")");
                             vermelho.setRetorno(retornoquery);
                             trayIcon.setImage(image2);
+                            setIconImage(image2);
                             if (cheque2.getState() == true && alertateste == false) {
                                 display();
                             }
@@ -123,6 +124,7 @@ public class TelaAviso extends javax.swing.JFrame {
                         } else {
                             jLabelAviso.setText("Não há tarefas!");
                             trayIcon.setImage(image);
+                            setIconImage(image);
                             vermelho.dispose();
                         }
                     } catch (SQLException ex) {
@@ -251,8 +253,8 @@ public class TelaAviso extends javax.swing.JFrame {
                 conecta.desconecta();
                 System.exit(0);
             };
-            ActionListener versaolistener = (ActionEvent e) -> {
-                JOptionPane.showMessageDialog(null, "Versão 23/10/2018");
+            ActionListener sobrelistener = (ActionEvent e) -> {
+                JOptionPane.showMessageDialog(null, "Versão 26/10/2018 \n"+"By developer - Ramylson A. Costa");
             };
             ActionListener janelaListener = (ActionEvent e) -> {
                 setVisible(true);
@@ -261,10 +263,10 @@ public class TelaAviso extends javax.swing.JFrame {
             };
             //criando itens do menu
             MenuItem janelatray = new MenuItem("Abrir");
-            MenuItem versaotray = new MenuItem("Versão");
+            MenuItem sobretray = new MenuItem("Sobre");
             MenuItem sairtray = new MenuItem("Sair");
             //objetos com eventos
-            versaotray.addActionListener(versaolistener);
+            sobretray.addActionListener(sobrelistener);
             sairtray.addActionListener(sairListener);
             janelatray.addActionListener(janelaListener);
             //Criando um objeto PopupMenu
@@ -274,7 +276,7 @@ public class TelaAviso extends javax.swing.JFrame {
             popup.add(cheque1); //Criando objetos do tipo Checkbox
             //popup.add(cheque2);
             popup.addSeparator();
-            popup.add(versaotray);
+            popup.add(sobretray);
             popup.add(sairtray);
             //objeto do tipo TrayIcon e Na linha a seguida a imagem icone sera redimensionada
             trayIcon = new TrayIcon(image, "Sis. Alerta de Pedidos", popup);
